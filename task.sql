@@ -1,6 +1,9 @@
-USE ShopDB; 
+USE ShopDB;
 
--- Create your stored procedure here
+DROP PROCEDURE IF EXISTS get_warehouse_product_inventory;
+
+DELIMITER $$
+
 CREATE PROCEDURE get_warehouse_product_inventory(IN warehouse_id INT)
 BEGIN
     SELECT 
@@ -12,4 +15,6 @@ BEGIN
         Products ON ProductInventory.ProductID = Products.ID
     WHERE 
         ProductInventory.WarehouseID = warehouse_id;
-END;
+END$$
+
+DELIMITER ;
