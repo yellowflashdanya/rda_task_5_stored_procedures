@@ -3,12 +3,13 @@ USE ShopDB;
 -- Create your stored procedure here
 CREATE PROCEDURE get_warehouse_product_inventory(IN warehouse_id INT)
 BEGIN
-    SELECT P.Name AS ProductName
-           PI.WarehouseAmount AS Amount
-    FROM
-        ProductInventory PI
-    JOIN
-        Products P on PI.ProductID = P.ID
-    WHERE
-        PI.WarehouseID = warehouse_id;
-END
+    SELECT 
+        Products.Name AS ProductName,
+        ProductInventory.WarehouseAmount AS Amount
+    FROM 
+        ProductInventory
+    JOIN 
+        Products ON ProductInventory.ProductID = Products.ID
+    WHERE 
+        ProductInventory.WarehouseID = warehouse_id;
+END;
